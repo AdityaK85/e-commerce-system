@@ -1,0 +1,393 @@
+{% load static %} {% include 'header.html' %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="breadcrumb-header">Address</h3>
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Home</a></li>
+          <li class="active">{{prod.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-7">
+        <!-- Billing Details -->
+        <div class="billing-details">
+          <div class="section-title">
+            <h3 class="title">Billing address</h3>
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              value="{{userProfile.user.user_name}}"
+              id="fname"
+              name="fname"
+              placeholder="First Name"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              id="lname"
+              name="lname"
+              placeholder="Last Name"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="email"
+              value="{{userProfile.user.user_email}}"
+              id="user_email"
+              name="user_email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              value="{{userProfile.address}}"
+              id="user_addr"
+              name="user_addr"
+              placeholder="Address"
+            />
+          </div>
+          <div class="form-group">
+            <select class="input" name="city" id="city">
+              <option value="nagpur">Nagpur</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Haydrabad">Haydrabad</option>
+              <option value="Kampur">Kampur</option>
+              <option value="Banglore">Banglore</option>
+              <option value="Kanpur">Kanpur</option>
+              <option value="Jaipur">Jaipur</option>
+              <option value="Surat">Surat</option>
+              <option value="Kolkata">Kolkata</option>
+              <option value="patna">patna</option>
+              <option value="indore">indore</option>
+              <option value="thane">thane</option>
+              <option value="Bhopal">Bhopal</option>
+              <option value="Raipur">Raipur</option>
+              <option value="Gwailor">Gwailor</option>
+              <option value="Solpur">Solpur</option>
+              <option value="Salem">Salem</option>
+              <option value="Noida">Noida</option>
+              <option value="Jhasi">Jhasi</option>
+              <option value="Latur">Latur</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select name="country" class="input" id="country">
+              <option value="Maharastra">Maharastra</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Utar pradesh">Utar pradesh</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Assam">Assam</option>
+              <option value="Chandigrah">Chandigrah</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Panjab">Panjab</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Odilsa">Odilsa</option>
+              <option value="Kerla">Kerla</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="Andra Pradesh">Andra Pradesh</option>
+              <option value="West Bangel">West Bangel</option>
+              <option value="Mirozam">Mirozam</option>
+              <option value="Goa">Goa</option>
+              <option value="Telegana">Telegana</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              value="{{userProfile.zipcode}}"
+              id="zipcode"
+              placeholder="ZIP Code"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="number"
+              id="telephone"
+              name="telephone"
+              placeholder="Enter 10-Digit mobile No."
+            />
+            <input type="hidden" id="payment_mode" name="payment_mode" />
+          </div>
+        </div>
+        <!-- /Billing Details -->
+
+        <!-- Shiping Details -->
+        <div class="shiping-details">
+          <div class="section-title">
+            <h3 class="title">Shiping</h3>
+          </div>
+          <div class="input-checkbox">
+            <label for="shiping-address">
+              <span></span>
+            </label>
+            <!-- <div class="caption">
+									<div class="form-group">
+										<input class="input" type="text" id="fname" name="fname" placeholder="First Name">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="lname" name="lname" placeholder="Last Name">
+									</div>
+									<div class="form-group">
+										<input class="input" type="email" id="user_email" name="user_email" placeholder="Email">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="user_addr" name="user_addr" placeholder="Address">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="city" name="city" placeholder="City">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="country" name="country" placeholder="Country">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text"  id="zipcode" placeholder="ZIP Code">
+									</div>
+									<div class="form-group">
+										<input class="input" type="tel" id="telephone" name="telephone" placeholder="Telephone">
+										<input class="hidden" type="text" id="payment_mode" name="payment_mode" placeholder="Telephone">
+									</div>
+								</div> -->
+          </div>
+        </div>
+
+        <!-- /Order notes -->
+      </div>
+
+      <!-- Order Details -->
+      <div class="col-md-5 order-details">
+        <div class="section-title text-center">
+          <h3 class="title">Your Order</h3>
+        </div>
+        <div class="order-summary">
+          <div class="order-col">
+            <div><strong>PRODUCT</strong></div>
+            <div class="text-right"><strong>Quantity</strong></div>
+            <div><strong>TOTAL</strong></div>
+          </div>
+          <input
+            type="hidden"
+            class="prod_id"
+            name="prod_id"
+            value="{{prod.id}}"
+            id="prod_id"
+          />
+          <input
+            type="hidden"
+            class="prod_price"
+            name="prod_price"
+            value="{{prod.selling_price}}"
+            id="prod_price"
+          />
+          <div class="order-products">
+            <div class="order-col">
+              <div>{{prod.name}}</div>
+              <div class="text-right">Q-1</div>
+              <div>{{prod.selling_price}}</div>
+            </div>
+          </div>
+          <div class="order-col">
+            <div>Shiping</div>
+            <div><strong>FREE</strong></div>
+          </div>
+          <div class="order-col">
+            <div><strong>TOTAL</strong></div>
+            <div>
+              <strong class="order-total">{{prod.selling_price}}/-</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-checkbox">
+          <input type="checkbox" id="terms" />
+          <label for="terms">
+            <span></span>
+            I've read and accept the <a href="#">terms & conditions</a>
+          </label>
+        </div>
+        <button onclick="submit_det()" class="primary-btn order-submit">
+          Place order
+        </button>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- jQuery Plugins -->
+
+<script src=" {% static 'js/jquery.min.js' %} "></script>
+<script src=" {% static 'js/bootstrap.min.js' %} "></script>
+<script src=" {% static 'js/slick.min.js' %} "></script>
+<script src=" {% static 'js/nouislider.min.js' %}"></script>
+<script src=" {% static 'js/jquery.zoom.min.js' %} "></script>
+<script src=" {% static 'js/main.js' %} "></script>
+<script src="{% static 'assets/bundles/sweetalert/sweetalert.min.js' %} "></script>
+<script src="{% static 'assets/js/page/sweetalert.js' %} "></script>
+
+<script>
+  $("#telephone").keypress(function () {
+    if (this.value.length == 10) {
+      return false;
+    }
+  });
+
+  function submit_det() {
+    var fname = $("#fname").val();
+    var lname = $("#lname").val();
+    var user_email = $("#user_email").val();
+    var user_addr = $("#user_addr").val();
+    var city = $("#city").val();
+    var country = $("#country").val();
+    var zipcode = $("#zipcode").val();
+    var telephone = $("#telephone").val();
+    var payment_mode = $("#payment_mode").val();
+    var id = $("#prod_id").val();
+    var prod_price = $("#prod_price").val();
+
+    console.log(fname);
+    console.log(lname);
+    console.log(user_email);
+    console.log(user_addr);
+    console.log(city);
+    console.log(country);
+    console.log(zipcode);
+    console.log(telephone);
+    console.log(payment_mode);
+    console.log(id);
+
+    if (
+      fname == "" ||
+      lname == "" ||
+      user_email == "" ||
+      user_addr == "" ||
+      city == "" ||
+      country == "" ||
+      zipcode == "" ||
+      telephone == ""
+    ) {
+      swal("Menditory All Field's ", "Re-check your details!", "error");
+      return false;
+    } else {
+      $.ajax({
+        method: "POST",
+        url: "/recived_pay/",
+        data: {
+          id,
+        },
+        success: function (response) {
+          console.log(response);
+          var options = {
+            key: "rzp_test_w767CrjX3CPVHY",
+            amount: response.get_price * 100,
+            currency: "INR",
+            name: "Online Ecommerce ",
+            description: "Let's Shoping More With Trends",
+            image: "https://example.com/your_logo",
+            handler: function (responseb) {
+              swal(
+                "Payment ID ",
+                ` ${responseb.razorpay_payment_id}  Check Your Mail `,
+                "success"
+              );
+              var payment_id = responseb.razorpay_payment_id;
+              $.ajax({
+                method: "POST",
+                url: "/get_payment/",
+                data: {
+                  fname,
+                  lname,
+                  user_email,
+                  user_addr,
+                  city,
+                  country,
+                  zipcode,
+                  telephone,
+                  payment_mode,
+                  id,
+                  payment_id,
+                },
+                success: function (response) {
+                  console.log(response);
+                  if (response == "0") {
+                    swal("Status ", rez.status, "success").then(function () {
+                      location.href = "/home";
+                    });
+                  }
+                },
+              });
+            },
+            prefill: {
+              name: fname + lname, //your customer's name
+              email: user_email,
+              contact: telephone,
+            },
+            theme: {
+              color: "#3399cc",
+            },
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+        },
+      });
+    }
+  }
+
+  // $.ajax({
+  //   method: "POST",
+  //   url: "/get_payment/",
+  //   data: {
+  //     fname,
+  //     lname,
+  //     user_email,
+  //     user_addr,
+  //     city,
+  //     country,
+  //     zipcode,
+  //     telephone,
+  //     payment_mode,
+  //     id,
+  //   },
+  //   success: function (response) {
+  //     console.log(response);
+  //     if (response == "done") {
+  //       alert("Your Order Placed");
+  //     }
+  //   },
+  // });
+  // }
+</script>
+
+{% include 'footer.html' %}

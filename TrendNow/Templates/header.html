@@ -1,0 +1,404 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>E-comerce Online Shoping</title>
+
+    <!-- auto complete search bar -->
+
+    <!-- Google font -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700"
+      rel="stylesheet"
+    />
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+    <link
+      rel="stylesheet"
+      href="{% static 'assets/bundles/izitoast/css/iziToast.min.css' %} "
+    />
+    <!-- end alert -->
+
+    <!-- Bootstrap -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/bootstrap.min.css' %} "
+    />
+
+    <!-- Slick -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/slick.css' %} "
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/slick-theme.css' %} "
+    />
+
+    <!-- nouislider -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/nouislider.min.css' %} "
+    />
+
+    <!-- Font Awesome Icon -->
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %} " />
+
+    <!-- Custom stlylesheet -->
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/style.css' %} "
+    />
+
+    <script
+      src="https://kit.fontawesome.com/995f07c2e1.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{% static 'assets/img/favicon.ico' %} "
+    />
+
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.js"
+      integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <!-- TOP HEADER -->
+      <div id="top-header">
+        <div class="container">
+          <ul class="header-links pull-left">
+            <li>
+              <a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a>
+            </li>
+            <li>
+              <a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a>
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a
+              >
+            </li>
+          </ul>
+          <ul class="header-links pull-right">
+            <li>
+              <a href="#" id="ac"><i class="fa fa-user-o mx-1"></i>{{user}}</a>
+              <a href="/sign_up" id="ac"
+                ><i
+                  class="fa-sharp fa-solid fa-registered fa-spin-pulse mx-2"
+                ></i
+                >Register</a
+              >
+              <a href="/sign_out"
+                ><i class="fa-solid fa-right-from-bracket mx-2"></i> Sign Out</a
+              >
+              <a
+                href="https://wa.me/15551234567?text=I'm%20interested%20in%20your%20car%20for%20sale"
+                ><i class="fa-brands fa-whatsapp fa-bounce fa-xl"></i
+                >whatsapp</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- /TOP HEADER -->
+
+      <!-- MAIN HEADER -->
+      <div id="header">
+        <!-- container -->
+        <div class="container">
+          <!-- row -->
+          <div class="row">
+            <!-- LOGO -->
+            <div class="col-md-3">
+              <div class="header-logo">
+                <a href="/" class="logo">
+                  <img src="{% static './img/logo.png' %} " alt="" />
+                </a>
+              </div>
+            </div>
+            <!-- /LOGO -->
+
+            <!-- SEARCH BAR -->
+            <div class="col-md-6">
+              <div class="header-search">
+                <form action="#">
+                  <select class="input-select">
+                    <option value="0">All Categories</option>
+                  </select>
+                  <input
+                    class="input"
+                    id="searchProd"
+                    name="searchProd"
+                    placeholder="Search here"
+                  />
+                  <button
+                    class="search-btn"
+                    onclick="serachProd()"
+                    type="button"
+                  >
+                    Search
+                  </button>
+                </form>
+              </div>
+            </div>
+            <!-- /SEARCH BAR -->
+
+            <!-- ACCOUNT -->
+            <div class="col-md-3 clearfix">
+              <div class="header-ctn">
+                <!-- Wishlist -->
+
+                <div class="dropdown">
+                  <a
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-expanded="true"
+                  >
+                    <i class="fa fa-heart-o"></i>
+                    <span>Your Wishlist</span>
+                    <div class="qty">{{viewWish|length}}</div>
+                  </a>
+                  <div class="cart-dropdown">
+                    <div class="cart-list">
+                      {% if viewWish %} {% for i in viewWish %}
+
+                      <div class="product-widget">
+                        <div class="product-img">
+                          <img
+                            src="{{i.product_user.product_image.url}} "
+                            alt=""
+                          />
+                        </div>
+                        <div class="product-body">
+                          <h3 class="product-name">
+                            <a href="#">{{i.product_user.name}}</a>
+                          </h3>
+                          <h4 class="product-price">
+                            <span class="qty">{{i.product_qty}}</span>{{i.product_user.selling_price}}/-
+                          </h4>
+                        </div>
+                        <a href="/removeWishlist/{{i.id}}" class="delete">
+                          <i class="fa fa-close"></i>
+                        </a>
+                      </div>
+                      {% endfor %} {% else %}
+                      <h4 class="product-price">
+                        <span>No Items In Your Wishlist</span>
+                      </h4>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+                <!-- /Wishlist -->
+
+                <!-- Cart -->
+                <div class="dropdown">
+                  <a
+                    class="dropdown-toggle"
+                    data-toggle="dropdown"
+                    aria-expanded="true"
+                  >
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Your Cart</span>
+                    <div class="qty" id="cart">{{viewCart|length}}</div>
+                  </a>
+                  <div class="cart-dropdown">
+                    <div class="cart-list">
+                      {% if viewCart %} {% for i in viewCart %}
+
+                      <div class="product-widget">
+                        <div class="product-img">
+                          <img
+                            src="{{i.product_user.product_image.url}} "
+                            alt=""
+                          />
+                        </div>
+                        <div class="product-body">
+                          <h3 class="product-name">
+                            <a href="#">{{i.product_user.name}}</a>
+                          </h3>
+                          <h4 class="product-price">
+                            <span class="qty">{{i.product_qty}}x</span>{{i.product_user.selling_price}}/-
+                          </h4>
+                        </div>
+                        <a href="/removeCart/{{i.id}}" class="delete">
+                          <i class="fa fa-close"></i>
+                        </a>
+                      </div>
+                      {% endfor %} {% else %}
+                      <h4 class="product-price">
+                        <span>No Items In Your Cart</span>
+                      </h4>
+                      {% endif %}
+                    </div>
+                    <div class="cart-btns">
+                      <a href="#">View Cart</a>
+                      <a href="{% url 'CheckOut_Page' %}"
+                        >Checkout <i class="fa fa-arrow-circle-right"></i
+                      ></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- /Cart -->
+
+                <!-- Menu Toogle -->
+                <div class="menu-toggle">
+                  <a href="#">
+                    <i class="fa fa-bars"></i>
+                    <span>Menu</span>
+                  </a>
+                </div>
+                <!-- /Menu Toogle -->
+              </div>
+            </div>
+            <!-- /ACCOUNT -->
+          </div>
+          <!-- row -->
+        </div>
+        <!-- container -->
+      </div>
+      <!-- /MAIN HEADER -->
+    </header>
+    <!-- /HEADER -->
+
+    <!-- NAVIGATION -->
+    <nav id="navigation">
+      <!-- container -->
+      <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+          <!-- NAV -->
+          <ul class="main-nav nav navbar-nav">
+            <li
+              class="{% if request.resolver.match.url_name == '/home' %} active {% endif %}"
+            >
+              <a href="/home">Home</a>
+            </li>
+            <li
+              class="{% if request.resolver.match.url_name == '/collections/{{item.slug}}' %} active {% endif %}"
+            >
+              <a href="/collections/laptop/">Laptops</a>
+            </li>
+            <li
+              class="{% if request.resolver.match.url_name == '/collections/{{item.slug}}' %} active {% endif %}"
+            >
+              <a href="/collections/mobile/">Smartphones</a>
+            </li>
+            <li
+              class="{% if request.resolver.match.url_name == '/collections/{{item.slug}}' %} active {% endif %}"
+            >
+              <a href="/collections/cammera/">Cameras</a>
+            </li>
+            <li
+              class="{% if request.resolver.match.url_name == '/collections/{{item.slug}}' %} active {% endif %}"
+            >
+              <a href="/collections/accesories/">Accessories</a>
+            </li>
+            <li
+              class="{% if request.resolver.match.url_name == 'all_store' %} active {% endif %}"
+            >
+              <a href="{% url 'all_store' %}">Store</a>
+            </li>
+            <li
+              class="{% if request.resolver.match.url_name == 'all_store' %} active {% endif %}"
+            >
+              <a href="{% url 'tracker' %}">Track </a>
+            </li>
+          </ul>
+          <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+      </div>
+      <!-- /container -->
+    </nav>
+    <!-- /NAVIGATION -->
+
+    <script src="{% static 'Use_Js_File/index.js' %}"></script>
+    <script src="{% static 'assets/bundles/sweetalert/sweetalert.min.js' %} "></script>
+<script src="{% static 'assets/js/page/sweetalert.js' %} "></script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/642a3d4031ebfa0fe7f61e8f/1gt2fuie4";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+
+    <script>
+      var availableTags = [
+        "ActionScript",
+        "AppleScript",
+        "Asp",
+        "BASIC",
+        "C",
+        "C++",
+        "Clojure",
+        "COBOL",
+        "ColdFusion",
+        "Erlang",
+        "Fortran",
+        "Groovy",
+        "Haskell",
+        "Java",
+        "JavaScript",
+        "Lisp",
+        "Perl",
+        "PHP",
+        "Python",
+        "Ruby",
+        "Scala",
+        "Scheme",
+      ];
+
+      $("#srch").click(function () {
+        console.log("click");
+      });
+
+      function serachProd() {
+        var searchProd = $("#searchProd").val();
+
+        $.ajax({
+          method: "POST",
+          url: "/search_product/",
+          data: {
+            searchProd,
+          },
+          success: function (response) {
+            if (response == "not"){
+              swal("Product Not found", "Check Your spell...", "error");
+            }else{
+              console.log(response);
+              $('#all_details').html(response)
+            }
+          },
+        });
+      }
+    </script>
+  </body>
+</html>

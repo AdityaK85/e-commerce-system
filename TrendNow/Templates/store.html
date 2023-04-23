@@ -1,0 +1,271 @@
+{% include 'header.html' %} {% load static %}
+<link rel="stylesheet" href="{% static 'assets/css/custom.css' %} " />
+<link rel="stylesheet" href="{% static 'assets/css/components.css' %} " />
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree">
+          <li><a href="/">Home</a></li>
+          <li><a href="#">All Categories</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li class="active">Total : {{category|length}} Results</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="" id="all_details">
+  <div class="section">
+    <!-- container -->
+    <div class="container">
+      <!-- row -->
+      <div class="row">
+        <!-- ASIDE -->
+
+        <div id="aside" class="col-md-3">
+          <!-- aside Widget -->
+          <div class="aside">
+            <h3 class="aside-title">Categories</h3>
+            <div class="checkbox-filter">
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="category-1"><a href="/collections/laptop/">
+                  <span></span>
+                  Laptops
+                </label></a>
+              </div>
+
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="category-2"><a href="/collections/mobile/">
+                  <span></span>
+                  Smartphones
+                </label></a>
+              </div>
+
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="category-3">
+                  <span></span><a href="/collections/cammera/">
+                  Cameras
+                </label></a>
+              </div>
+
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="category-4">
+                  <span></span><a href="/collections/earphone/">
+                  Accessories
+                </label></a>
+              </div>
+
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="category-5"><a href="/collections/spekaer/">
+                  <span></span>
+                  Home theater
+                </label></a>
+              </div>
+
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="category-6">
+                  <span></span><a href="/collections/headphone/">
+                  Headphones
+                </label></a>
+              </div>
+            </div>
+            <br />
+          </div>
+          <!-- /aside Widget -->
+
+
+          <!-- aside Widget -->
+          <div class="aside">
+            <h3 class="aside-title">Top Brand</h3>
+            <div class="checkbox-filter">
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="brand-1">
+                  <span></span>
+                  SAMSUNG
+                  <small></small>
+                </label>
+              </div>
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="brand-2">
+                  <span></span>
+                  LG
+                  <small></small>
+                </label>
+              </div>
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="brand-3">
+                  <span></span>
+                  SONY
+                  <small></small>
+                </label>
+              </div>
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="brand-4">
+                  <span></span>
+                  IPHONE
+                  <small></small>
+                </label>
+              </div>
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="brand-5">
+                  <span></span>
+                  BOAT
+                  <small></small>
+                </label>
+              </div>
+              <div class="input-checkbox">
+                <i class="fa-solid fa-square-o fa-spin fa-spin-reverse"></i>
+                <label for="brand-6">
+                  <span></span>
+                  SONY
+                  <small>
+
+                  </small>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- /aside Widget -->
+
+          <!-- aside Widget -->
+          <!-- /aside Widget -->
+        </div>
+        <!-- /ASIDE -->
+
+        <!-- STORE -->
+        <div id="store" class="col-md-9">
+          <!-- store top filter -->
+          <div class="store-filter clearfix">
+          </div>
+          <!-- /store top filter -->
+
+          <!-- store products -->
+
+          <div class="row" id="get_item">
+            {% for item in category %}
+            <!-- product -->
+            <div class="col-md-4 col-xs-6">
+              <div class="product">
+                <div class="product-img">
+                  <img src="/media/{{item.image}} " alt="" />
+                  <div class="product-label">
+                    <span class="sale">-30%</span>
+                    <span class="new">NEW</span>
+                  </div>
+                </div>
+                <div class="product-body">
+                  <p class="product-category">{{item.catergory}}</p>
+                  <h3 class="product-name"><a href="#">{{item.name}}</a></h3>
+                  <h4 class="product-price">
+                    {{item.orignal_price}} <del class="product-old-price">{{item.product.selling_price}}</del>
+                  </h4>
+                  <div class="product-rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </div>
+                  <div class="product-btns">
+                    <button
+                      class="add-to-wishlist"
+                      onclick="wishlist('{{item.id}}')"
+                    >
+                      <i class="fa fa-heart-o"></i
+                      ><span class="tooltipp">add to wishlist</span>
+                    </button>
+                    <button class="add-to-compare">
+                      <a href="/payment/{{item.id}}">
+                        <i class="fa fa-exchange"></i
+                        ><span class="tooltipp">Buy</span></a
+                      >
+                    </button>
+                    <button class="quick-view" id="showID{{item.id}}">
+                      <a href="/product/{{item.id}}"
+                        ><i class="fa fa-eye"></i
+                        ><span class="tooltipp">quick view</span>
+                      </a>
+                    </button>
+                  </div>
+                </div>
+                <div class="add-to-cart">
+                  <button
+                    class="add-to-cart-btn"
+                    onclick="add_to_cart('{{item.id}}')"
+                  >
+                    <i class="fa fa-shopping-cart"></i> add to cart
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- /product -->
+
+            <!-- /product -->
+            {% endfor %}
+          </div>
+          <!-- /store products -->
+
+          <!-- store bottom filter -->
+          <div class="store-filter clearfix">
+          </div>
+          <!-- /store bottom filter -->
+        </div>
+        <!-- /STORE -->
+      </div>
+      <!-- /row -->
+    </div>
+    <!-- /container -->
+  </div>
+  <!-- /SECTION -->
+</div>
+
+<script src="{% static 'Use_Js_File/index.js' %}"></script>
+<script src="{% static 'assets/bundles/izitoast/js/iziToast.min.js' %} "></script>
+<script src="{% static 'assets/js/page/toastr.js' %} "></script>
+
+<script>
+  slug = $("#slug_items").val();
+
+  var slugList = [];
+  var i;
+  for (i in slug) {
+    if (i != slug) {
+      console.log(slugList);
+      $("#slug_items").append(slugList);
+    }
+  }
+
+  $(function () {
+    $("#slug_items").each(function () {
+      $(this)
+        .siblings("[value" + this.value + "]")
+        .remove();
+    });
+  });
+
+  $(".categ").each(function () {
+    $('.categ:has("' + $(this).text() + '"):gt(0)').remove();
+  });
+</script>
+{% include 'footer.html' %}

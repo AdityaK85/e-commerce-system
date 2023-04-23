@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="title">Ecommerce Online Shop - {{user_email}}</div>
+    <div class="body">
+      <span>Mr/Mr.s : {{fname}} {{lname}}</span>
+      <div class="addr">Address : {{user_addr}}</div>
+      <div class="addr">City : {{city}}</div>
+      <div class="addr">County: {{country}}</div>
+      <div class="addr">Zipcode : {{zipcode}}</div>
+
+      {% for i in cartDetails %}
+      <div class="order_det">
+        Ordered Product Details
+        <span>Product Name : {{i.name}}</span>
+        <span>Product Name : {{i.selling_price}}</span>
+      </div>
+      {% endfor %}
+      
+      <div class="addr">Total Price : {{total}}</div>
+      <div class="track_O">
+        Track Your Order by Order No
+        <div class="addr">Order No : {{tracking_no}}</div>
+      </div>
+    </div>
+  </body>
+</html>

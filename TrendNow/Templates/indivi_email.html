@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    
+    <style>
+
+      .container{
+        margin: 0;
+        width: 30rem;
+        border: 1px black solid;
+        margin: 25% -25% 25% -25;
+        box-shadow: 1px rgb(235, 203, 203) ;
+      }
+
+    </style>
+
+
+  </head>
+  <body>
+    <div class="main">Your Ecommerce.in Of {{order_details.name|upper}}</div>
+    <div class="container">
+    <div class="title">Ecommerce Online Shop - {{user_email}}</div>
+    <div class="body">
+      <span>Mr/Mr.s : {{fname}} {{lname}}</span>
+      <div class="addr">Address : {{user_addr}}</div>
+      <div class="addr">City : {{city}}</div>
+      <div class="addr">County: {{country}}</div>
+      <div class="addr">Zipcode : {{zipcode}}</div>
+
+      <div class="order_det">
+        Ordered Product Details
+        <span>Product Name : {{order_details.name}}</span>
+        <span>Product Name : {{order_details.selling_price}}</span>
+      </div>
+
+      <div class="addr">Total Price : {{total}}</div>
+      <div class="track_O">
+        Track Your Order by Order No
+        <div class="addr">Order No : </div>
+      </div>
+    </div>
+    </div>
+  </body>
+</html>

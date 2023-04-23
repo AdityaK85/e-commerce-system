@@ -1,0 +1,63 @@
+<div class="change_html" id="all_details">
+  <div class="container">
+    <div class="row" id="get_item">
+      {% for i in obj %}
+      <!-- product -->
+      <div class="col-md-3 col-xs-5">
+        <div class="product">
+          <div class="product-img">
+            <img src="{{i.product_image.url}}" alt="No Image" />
+            <div class="product-label">
+              <span class="sale">-30%</span>
+              <span class="new">NEW</span>
+            </div>
+          </div>
+          <div class="product-body">
+            <p class="product-category">{{i.catergory}}</p>
+            <h3 class="product-name"><a href="#">{{i.name}}</a></h3>
+            <h4 class="product-price">
+              Rs.{{i.selling_price}}
+              <del class="product-old-price">{{i.orignal_price}}</del>
+            </h4>
+            <div class="product-rating">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+            </div>
+            <div class="product-btns">
+              <button class="add-to-wishlist" onclick="wishlist('{{i.id}}')">
+                <i class="fa fa-heart-o"></i
+                ><span class="tooltipp">add to wishlist</span>
+              </button>
+              <button class="add-to-compare">
+                <a href="/payment/{{i.id}}">
+                  <i class="fa fa-exchange"></i
+                  ><span class="tooltipp">Buy</span></a
+                >
+              </button>
+              <button class="quick-view" id="showID{{i.id}}">
+                <a href="/product/{{i.id}}"
+                  ><i class="fa fa-eye"></i
+                  ><span class="tooltipp">quick view</span>
+                </a>
+              </button>
+            </div>
+          </div>
+          <div class="add-to-cart">
+            <button class="add-to-cart-btn" onclick="add_to_cart('{{i.id}}')">
+              <i class="fa fa-shopping-cart"></i> add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- /product -->
+
+      <!-- /product -->
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<script></script>

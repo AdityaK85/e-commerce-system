@@ -1,0 +1,148 @@
+{% load static %} {% include 'header.html' %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="breadcrumb-header">Track Your</h3>
+        <ul class="breadcrumb-tree">
+          <li><a href="/home">Home</a></li>
+          <li class="active">Track</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-7">
+        <!-- Billing Details -->
+        <div class="billing-details">
+          <div class="section-title">
+            <h3 class="title">Email and Order no</h3>
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              id="user_email"
+              name="user_email"
+              placeholder="Email "
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              id="track_no"
+              name="track_No"
+              placeholder="Order No."
+            />
+          </div>
+        </div>
+        <!-- /Billing Details -->
+
+        <!-- Shiping Details -->
+        <div class="shiping-details">
+          <div class="section-title">
+            <h3 class="title"><a id="order" onclick="serach_track()">Search</a></h3>
+          </div>
+          <div class="input-checkbox">
+          
+          </div>
+        </div>
+        <!-- /Shiping Details -->
+
+        <!-- Order notes -->
+
+        <!-- /Order notes -->
+      </div>
+
+      <!-- Order Details -->
+      <div id="ordered_product">
+                                      <div class="col-md-5 order-details">
+        <div class="section-title text-center">
+          <h3 class="title">Your Order</h3>
+        </div>
+        
+        <div class="order-summary">
+          <div class="order-col">
+            
+          </div>
+
+          <div class="order-products">
+           
+           
+          </div>
+        </div>
+       
+
+        <div class="section-title text-center">
+          <h4 class="title">Let's Shop Now...
+          <div class="caption">
+            <p>An e-commerce website is one that allows people to buy and sell physical goods, services, and digital products over the internet rather than at a brick-and-mortar location. Through an e-commerce website, a business can process orders, accept payments, manage shipping and logistics, and provide customer service.</p>
+          </div>
+        </div>
+
+       
+        <div class="payment-method">
+        
+      </div>
+    </div>
+      <!-- /Order Details -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- jQuery Plugins -->
+
+<script src=" {% static 'js/jquery.min.js' %} "></script>
+<script src=" {% static 'js/bootstrap.min.js' %} "></script>
+<script src=" {% static 'js/slick.min.js' %} "></script>
+<script src=" {% static 'js/nouislider.min.js' %}"></script>
+<script src=" {% static 'js/jquery.zoom.min.js' %} "></script>
+<script src=" {% static 'js/main.js' %} "></script>
+<script src="{% static 'assets/bundles/sweetalert/sweetalert.min.js' %} "></script>
+<script src="{% static 'assets/js/page/sweetalert.js' %} "></script>
+
+<script>
+  function serach_track() {
+    user_email = $("#user_email").val();
+    track_no = $("#track_no").val();
+
+    if (user_email == "") {
+      swal("Email Is Invalid", "You clicked the button!", "error");
+    } else if (track_no == "") {
+      swal("Order No Is Invalid", "You clicked the button!", "error");
+    } else {
+      $.ajax({
+        method: "POST",
+        url: "/track_product/",
+        data: {
+          user_email,
+          track_no,
+        },
+        success: function (response) {
+          console.log(response);
+          $("#ordered_product").html(response)
+        },
+      });
+    }
+  }
+</script>
+
+{% include 'footer.html' %}

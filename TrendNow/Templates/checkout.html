@@ -1,0 +1,450 @@
+{% load static %} {% include 'header.html' %}
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <h3 class="breadcrumb-header">Checkout</h3>
+        <ul class="breadcrumb-tree">
+          <li><a href="#">Home</a></li>
+          <li class="active">Checkout</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-7">
+        <!-- Billing Details -->
+        <div class="billing-details">
+          <div class="section-title">
+            <h3 class="title">Billing address</h3>
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              value="{{userProfile.user.user_name}}"
+              id="fname"
+              name="fname"
+              placeholder="First Name"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              id="lname"
+              name="lname"
+              placeholder="Last Name"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="email"
+              value="{{userProfile.user.user_email}}"
+              id="user_email"
+              name="user_email"
+              placeholder="Email"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              value="{{userProfile.address}}"
+              id="user_addr"
+              name="user_addr"
+              placeholder="Address"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              value="{{userProfile.city}}"
+              id="city"
+              name="city"
+              placeholder="City"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              id="country"
+              value="{{userProfile.country}}"
+              name="country"
+              placeholder="Country"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="text"
+              value="{{userProfile.zipcode}}"
+              id="zipcode"
+              placeholder="ZIP Code"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              class="input"
+              type="number"
+              id="telephone"
+              value="{{userProfile.user.user_phone}}"
+              name="telephone"
+              placeholder="Enter 10-Digit mobile No."
+            />
+            <input type="hidden" id="payment_mode" name="payment_mode" />
+          </div>
+          <div class="form-group">
+            
+          </div>
+        </div>
+        <!-- /Billing Details -->
+
+        <!-- Shiping Details -->
+        <div class="shiping-details">
+          <div class="section-title">
+            <h3 class="title">Shiping </h3>
+          </div>
+          <div class="input-checkbox">
+            <label for="shiping-address">
+              <span></span>
+              
+            </label>
+            <!-- <div class="caption">
+									<div class="form-group">
+										<input class="input" type="text" id="fname" name="fname" placeholder="First Name">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="lname" name="lname" placeholder="Last Name">
+									</div>
+									<div class="form-group">
+										<input class="input" type="email" id="user_email" name="user_email" placeholder="Email">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="user_addr" name="user_addr" placeholder="Address">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="city" name="city" placeholder="City">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text" id="country" name="country" placeholder="Country">
+									</div>
+									<div class="form-group">
+										<input class="input" type="text"  id="zipcode" placeholder="ZIP Code">
+									</div>
+									<div class="form-group">
+										<input class="input" type="tel" id="telephone" name="telephone" placeholder="Telephone">
+										<input class="hidden" type="text" id="payment_mode" name="payment_mode" placeholder="Telephone">
+									</div>
+								</div> -->
+          </div>
+        </div>
+        <!-- /Shiping Details -->
+
+       
+        <!-- /Order notes -->
+      </div>
+
+      <!-- Order Details -->
+      <div class="col-md-5 order-details">
+        <div class="section-title text-center">
+          <h3 class="title">Your Order</h3>
+        </div>
+        {% if cartItems %}
+        <div class="order-summary">
+          <div class="order-col">
+            <div><strong>PRODUCT</strong></div>
+            <div class="text-right"><strong>Quantity</strong></div>
+            <div><strong>TOTAL</strong></div>
+          </div>
+
+          <div class="order-products">
+            {% for i in cartItems %}
+            <div class="order-col">
+              <div>{{i.product_user.name}}</div>
+              <div class="text-right">Q-{{i.product_qty}}</div>
+              <div>{{i.product_user.selling_price}}</div>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="order-col">
+            <div>Shiping</div>
+            <div><strong>FREE</strong></div>
+          </div>
+          <div class="order-col">
+            <div><strong>TOTAL</strong></div>
+            <div><strong class="order-total">{{total_price}}/-</strong></div>
+          </div>
+        </div>
+        {% else %}
+
+        <div class="section-title text-center">
+          <h4 class="title">Cart Is Empty</h4>
+        </div>
+
+        {% endif %}
+        
+        <div class="input-checkbox">
+          <input type="checkbox" id="terms" />
+          <label for="terms">
+            <span></span>
+            I've read and accept the <a href="#">terms & conditions</a>
+          </label>
+        </div>
+        <button onclick="submit_det()" class="primary-btn order-submit">
+          Place order
+        </button>
+      </div>
+      <!-- /Order Details -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- jQuery Plugins -->
+
+<script src=" {% static 'js/jquery.min.js' %} "></script>
+<script src=" {% static 'js/bootstrap.min.js' %} "></script>
+<script src=" {% static 'js/slick.min.js' %} "></script>
+<script src=" {% static 'js/nouislider.min.js' %}"></script>
+<script src=" {% static 'js/jquery.zoom.min.js' %} "></script>
+<script src=" {% static 'js/main.js' %} "></script>
+
+<script>
+
+  $('#telephone').keypress(function(){
+    if (this.value.length == 10){
+      return false;
+    }
+  })
+
+
+
+  // function submit_det() {
+  //   var fname = $("#fname").val();
+  //   var lname = $("#lname").val();
+  //   var user_email = $("#user_email").val();
+  //   var user_addr = $("#user_addr").val();
+  //   var city = $("#city").val();
+  //   var country = $("#country").val();
+  //   var zipcode = $("#zipcode").val();
+  //   var telephone = $("#telephone").val();
+  //   var payment_mode = $("#payment_mode").val();
+
+  //   console.log(fname);
+  //   console.log(lname);
+  //   console.log(user_email);
+  //   console.log(user_addr);
+  //   console.log(city);
+  //   console.log(country);
+  //   console.log(zipcode);
+  //   console.log(telephone);
+  //   console.log(payment_mode);
+
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/order_details/",
+  //     data: {
+  //       fname,
+  //       lname,
+  //       user_email,
+  //       user_addr,
+  //       city,
+  //       country,
+  //       zipcode,
+  //       telephone,
+  //       payment_mode,
+  //     },
+  //     success: function (response) {
+  //       console.log(response);
+  //       if (response == "order placed") {
+  //         alert("Your Order Placed");
+  //       }
+  //     },
+  //   });
+  // }
+
+  function submit_det() {
+    var fname = $("#fname").val();
+    var lname = $("#lname").val();
+    var user_email = $("#user_email").val();
+    var user_addr = $("#user_addr").val();
+    var city = $("#city").val();
+    var country = $("#country").val();
+    var zipcode = $("#zipcode").val();
+    var telephone = $("#telephone").val();
+    var payment_mode = $("#payment_mode").val("Pay by Razor Payments");
+
+    console.log(fname);
+    console.log(lname);
+    console.log(user_email);
+    console.log(user_addr);
+    console.log(city);
+    console.log(country);
+    console.log(zipcode);
+    console.log(telephone);
+    console.log(payment_mode);
+
+    if (
+      fname == "" ||
+      lname == "" ||
+      user_email == "" ||
+      user_addr == "" ||
+      city == "" ||
+      country == "" ||
+      zipcode == "" ||
+      telephone == ""
+    ) {
+      swal("Menditory All Field's ", "Re-check your details!", "error");
+      return false;
+    } else {
+      $.ajax({
+        method: "POST",
+        url: "/proceeds_to_pay/",
+        success: function (response) {
+          console.log(response);
+          var options = {
+            key: "rzp_test_w767CrjX3CPVHY",
+            amount: response.total_price * 100,
+            currency: "INR",
+            name: "Online Ecommerce ", //your business name
+            description: "Let's Shoping More With Trends",
+            image: "https://example.com/your_logo",
+            handler: function (responseb) {
+              swal("Payment ID ", responseb.razorpay_payment_id, "success");
+              var payment_id = responseb.razorpay_payment_id;
+              $.ajax({
+                method: "POST",
+                url: "/order_details/",
+                data: {
+                  fname,
+                  lname,
+                  user_email,
+                  user_addr,
+                  city,
+                  country,
+                  zipcode,
+                  telephone,
+                  payment_mode,
+                  payment_id,
+                },
+                success: function (rez) {
+                  console.log(rez);
+                  swal("Status ", rez.status, "success");
+                }
+              })
+            },
+            prefill: {
+              name: fname + lname, //your customer's name
+              email: user_email,
+              contact: telephone,
+            },
+            theme: {
+              color: "#3399cc",
+            },
+          };
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+        },
+      });
+    }
+  }
+
+  function payment() {
+    var fname = $("#fname").val();
+    var lname = $("#lname").val();
+    var user_email = $("#user_email").val();
+    var user_addr = $("#user_addr").val();
+    var city = $("#city").val();
+    var country = $("#country").val();
+    var zipcode = $("#zipcode").val();
+    var telephone = $("#telephone").val();
+    var payment_mode = $("#payment_mode").val("Pay by Razor Payments");
+
+    if (
+      fname == "" ||
+      lname == "" ||
+      user_email == "" ||
+      user_addr == "" ||
+      city == "" ||
+      country == "" ||
+      zipcode == "" ||
+      telephone == ""
+    ) {
+      alert("all field are medetory");
+      return false;
+    } else {
+      $.ajax({
+        method: "POST",
+        url: "/proceeds_to_pay/",
+        success: function (response) {
+          console.log(response);
+          var options = {
+            key: "rzp_test_w767CrjX3CPVHY",
+            amount: response.total_price * 100,
+            currency: "INR",
+            name: "Online Ecommerce ", //your business name
+            description: "Let's Shoping More With Trends",
+            image: "https://example.com/your_logo",
+            handler: function (responseb) {
+              alert(responseb.razorpay_payment_id);
+              var payment_id = response.razorpay_payment_id;
+              $.ajax({
+                method: "POST",
+                url: "/order_details/",
+                data: {
+                  fname,
+                  lname,
+                  user_email,
+                  user_addr,
+                  city,
+                  country,
+                  zipcode,
+                  telephone,
+                  payment_mode,
+                  payment_id,
+                },
+                success: function (rez) {
+                  console.log(rez);
+                  alert(rez.status);
+                },
+              });
+            },
+            prefill: {
+              name: fname + lname, //your customer's name
+              email: user_email,
+              contact: telephone,
+            },
+            theme: {
+              color: "#3399cc",
+            },
+          };
+
+          var rzp1 = new Razorpay(options);
+          rzp1.open();
+        },
+      });
+    }
+  }
+</script>
+
+{% include 'footer.html' %}
