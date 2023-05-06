@@ -10,6 +10,7 @@ from django.contrib import messages
 from django.core.mail import send_mail ,EmailMultiAlternatives
 from django.utils.html import strip_tags
 from online_shop import settings 
+import datetime
 # Create your views here.
 
 
