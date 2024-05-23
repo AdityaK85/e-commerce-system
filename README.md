@@ -10,7 +10,6 @@ pip install pillow
 python manage.py makemigrations 
 python mange.py migrate 
 last step : python mange.py runserver 
-enjoy....... 
-Thanks
+
 
 Credit : Aditya Kothekar UG : BCCA University : RTMNU
